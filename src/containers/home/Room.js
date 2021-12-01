@@ -11,9 +11,10 @@ import iconList from "../../assets/list.png";
 const Wrapper = styled.div`
     color: #1a212f;
     background-image: url(${BackgroundFish});
-    background-size: contain;
+    background-size: 30%;
     background-repeat: no-repeat;
     background-position: top left;
+    margin-bottom: 50px;
     h1 {
         font-weight: 800;
         font-size: 36px;
