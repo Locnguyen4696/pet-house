@@ -91,17 +91,17 @@ export default function Search() {
                         <Select>Thanh Xuân / Hà Nội</Select>
                     </ContentItem>
                     <ContentItem>
-                        <img src={iconAddress} alt="Address" />
+                        <img src={iconCheckin} alt="Address" />
                         <h3>Đăng kí</h3>
                         <Select>19 - 10- 2021</Select>
-                    </ContentItem>{" "}
+                    </ContentItem>
                     <ContentItem>
-                        <img src={iconAddress} alt="Address" />
+                        <img src={iconCheckout} alt="Address" />
                         <h3>Trả phòng</h3>
                         <Select>22 - 10- 2021</Select>
-                    </ContentItem>{" "}
+                    </ContentItem>
                     <ContentItem>
-                        <img src={iconAddress} alt="Address" />
+                        <img src={iconRoom} alt="Address" />
                         <h3>Phòng</h3>
                         <Select>Phòng thú cưng</Select>
                     </ContentItem>

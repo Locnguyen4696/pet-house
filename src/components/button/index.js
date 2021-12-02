@@ -31,7 +31,7 @@ const Content = styled.div`
     text-align: center;
     padding: 0 10px;
     color: ${(props) => props.variant==="primary"? theme.color.primary : theme.color.secondary};
-
+    width: 100%;
 `;
 
 export default function Button({ children, ...props }) {

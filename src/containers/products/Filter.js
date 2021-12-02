@@ -20,7 +20,7 @@ const Price = styled.div`
     line-height: 17px;
     margin-bottom: 35px;
     & > input {
-        width: 50%;
+        width: 100px;
         padding: 5px;
     }
 `;
