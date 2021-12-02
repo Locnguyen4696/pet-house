@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Header from "./components/header";
+import Footer from "./components/footer";
 import Home from "./containers/home";
 import About from "./containers/about";
 import Products from "./containers/products";
@@ -37,6 +38,7 @@ function App() {
                     </Route>
                 </Switch>
             </Wrapper>
+            <Footer />
         </Router>
     );
 }
