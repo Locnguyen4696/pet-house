@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import Container from "../../components/container";
 import Heading from "./Heading";
 import Filter from "./Filter";
 import Grid from "./Grid";
+import Promo from "./Promo";
+
 
 const Flex = styled.div`
     & > div {
@@ -13,15 +15,18 @@ const Flex = styled.div`
 `;
 
 export default function Products() {
+
     return (
         <>
+
             <Heading />
             <Flex>
                 <Container>
                     <Filter />
-                    <Grid />
+                    <Grid/>
                 </Container>
             </Flex>
+            <Promo />
         </>
     );
 }

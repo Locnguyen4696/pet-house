@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Container from "../../components/container";
 import Button from "../../components/button";
@@ -78,7 +79,7 @@ export default function Room() {
                                     Giá theo ngày: <span> 300.000 VND</span>
                                 </li>
                             </ul>
-                            <Button variant="primary">Đặt phòng ngay</Button>
+                            <Button variant="primary"><Link to="/products/details">Đặt phòng ngay</Link></Button>
                         </Content>
                     </SliderContent>
                     <SliderContent>
@@ -92,7 +93,7 @@ export default function Room() {
                                     Giá theo ngày: <span>250.000 VND</span>
                                 </li>
                             </ul>
-                            <Button variant="primary">Đặt phòng ngay</Button>
+                            <Button variant="primary"><Link to="/products/details">Đặt phòng ngay</Link></Button>
                         </Content>
                     </SliderContent>
                     <SliderContent>
@@ -106,7 +107,7 @@ export default function Room() {
                                     Giá theo ngày: <span>350.000 VND</span>
                                 </li>
                             </ul>
-                            <Button variant="primary">Đặt phòng ngay</Button>
+                            <Button variant="primary"><Link to="/products/details">Đặt phòng ngay</Link></Button>
                         </Content>
                     </SliderContent>
                 </Slider>

@@ -32,11 +32,14 @@ const Content = styled.div`
     padding: 0 10px;
     color: ${(props) => props.variant==="primary"? theme.color.primary : theme.color.secondary};
     width: 100%;
+    a{
+        color: ${(props) => props.variant==="primary"? theme.color.primary : theme.color.secondary};
+    }
 `;
 
 export default function Button({ children, ...props }) {
     return (
-        <StyledButton {...props} variant={props.variant}>
+        <StyledButton {...props} variant={props.variant} onClick={props.onClick}>
             <Content theme={props.theme} variant={props.variant}>{children}</Content>
             <img src={props.variant==="primary"? paw : pawSecondary} alt="paw" />
         </StyledButton>

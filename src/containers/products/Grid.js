@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 import imgCat from "../../assets/img-cat.png";
 import imgCat1 from "../../assets/img-cat1.png";
 import imgCat2 from "../../assets/img-cat2.png";
@@ -19,7 +20,7 @@ const Wrapper = styled.div`
     grid-template: repeat(2, 1fr) / repeat(3, 1fr);
 `;
 
-const GridItem = styled.div`
+const GridItem = styled(NavLink)`
     background: #ffffff;
     border: 1px solid #e1e1e1;
     box-sizing: border-box;
@@ -51,10 +52,10 @@ const Content = styled.div`
     }
 `;
 
-export default function Grid() {
+export default function Grid(props) {
     return (
         <Wrapper>
-            <GridItem>
+            <GridItem to="products/details">
                 <ImgContainer>
                     <img src={imgCat} alt="img" />
                 </ImgContainer>
@@ -66,10 +67,10 @@ export default function Grid() {
                         Thiết bị phòng <img src={iconNone} alt="img" /> <br />
                         Giá: 100.000 VND
                     </p>
-                    <Button variant="primary">Đặt phòng</Button>
+                    <Button variant="primary" onClick={()=>props.showBooking()}>Đặt phòng</Button>
                 </Content>
             </GridItem>
-            <GridItem>
+            <GridItem to="products/details">
                 <ImgContainer>
                     <img src={imgCat2} alt="img" />
                 </ImgContainer>
@@ -82,10 +83,10 @@ export default function Grid() {
                         <img src={iconToy} alt="img" /> <br />
                         Giá: 200.000 VND
                     </p>
-                    <Button variant="primary">Đặt phòng</Button>
+                    <Button variant="primary" onClick={()=>props.showBooking()}>Đặt phòng</Button>
                 </Content>
             </GridItem>
-            <GridItem>
+            <GridItem to="products/details">
                 <ImgContainer>
                     <img src={imgCat2} alt="img" />
                 </ImgContainer>
@@ -99,10 +100,10 @@ export default function Grid() {
                         <img src={iconToys} alt="img" /> <br />
                         Giá: 250.000 VND
                     </p>
-                    <Button variant="primary">Đặt phòng</Button>
+                    <Button variant="primary" onClick={()=>props.showBooking()}>Đặt phòng</Button>
                 </Content>
             </GridItem>
-            <GridItem>
+            <GridItem to="products/details">
                 <ImgContainer>
                     <img src={imgCat3} alt="img" />
                 </ImgContainer>
@@ -116,10 +117,10 @@ export default function Grid() {
                         <img src={iconToys} alt="img" /> <br />
                         Giá: 350.000 VND
                     </p>
-                    <Button variant="primary">Đặt phòng</Button>
+                    <Button variant="primary" onClick={()=>props.showBooking()}>Đặt phòng</Button>
                 </Content>
             </GridItem>
-            <GridItem>
+            <GridItem to="products/details">
                 <ImgContainer>
                     <img src={imgCat4} alt="img" />
                 </ImgContainer>
@@ -134,10 +135,10 @@ export default function Grid() {
                         <img src={iconHouse} alt="img" /> <br />
                         Giá: 400.000 VND
                     </p>
-                    <Button variant="primary">Đặt phòng</Button>
+                    <Button variant="primary" onClick={()=>props.showBooking()}>Đặt phòng</Button>
                 </Content>
             </GridItem>
-            <GridItem>
+            <GridItem to="products/details">
                 <ImgContainer>
                     <img src={imgCat5} alt="img" />
                 </ImgContainer>
@@ -152,7 +153,7 @@ export default function Grid() {
                         <img src={iconHouse} alt="img" /> <br />
                         Giá: 600.000 VND
                     </p>
-                    <Button variant="primary">Đặt phòng</Button>
+                    <Button variant="primary" onClick={()=>props.showBooking()}>Đặt phòng</Button>
                 </Content>
             </GridItem>
         </Wrapper>
