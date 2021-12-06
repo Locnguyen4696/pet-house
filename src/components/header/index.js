@@ -46,10 +46,10 @@ export default function Header() {
                             <NavLink to="/">Trang chủ</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/about">Giới thiệu</NavLink>
+                            <NavLink to="/products">Dịch vụ</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/products">Dịch vụ</NavLink>
+                            <NavLink to="/review">Nhận xét</NavLink>
                         </li>
                         <li>
                             <NavLink to="/contact">Liên hệ</NavLink>

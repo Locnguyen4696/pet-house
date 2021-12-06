@@ -50,9 +50,9 @@ const Dropdown = styled.div`
         margin-bottom: 20px;
     }
 `;
-export default function Heading() {
+export default function Heading(props) {
     const [showDropdown, setShowDropdown] = useState(false);
-    const [sort, setSort] = useState(false);
+
 
     return (
         <Wrapper>
@@ -66,7 +66,7 @@ export default function Heading() {
                     }
                 >
                     <div>
-                        {sort ? (
+                        {props.sort ? (
                             <img src={iconUp} alt="iconUp" />
                         ) : (
                             <img src={iconDown} alt="iconDown" />
@@ -78,14 +78,14 @@ export default function Heading() {
                         <Dropdown>
                             <div
                                 onClick={() => {
-                                    setSort(true);
+                                    props.handleSort(true);
                                 }}
                             >
                                 Theo giá tăng
                             </div>
                             <div
                                 onClick={() => {
-                                    setSort(false);
+                                    props.handleSort(false);
                                 }}
                             >
                                 Theo giá giảm

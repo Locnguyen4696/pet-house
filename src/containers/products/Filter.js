@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import styled from "styled-components";
 import iconCheck from "../../assets/icon-check.png";
 import iconUncheck from "../../assets/icon-uncheck.png";
@@ -34,7 +34,8 @@ const Item = styled.div`
 
 const Button = styled.button`
     width: 185px;
-    background: ${(props) => props.variant==="primary" ? "#fac663" : "#FFFEFD"};
+    background: ${(props) =>
+        props.variant === "primary" ? "#fac663" : "#FFFEFD"};
     border: 2px solid #fac663;
     box-sizing: border-box;
     border-radius: 25px;
@@ -47,71 +48,115 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
-const Checkbox = () => {
+const Checkbox = (props) => {
     const [checked, setChecked] = useState(false);
     return (
-        <>
+        <div>
             {checked ? (
                 <img
                     src={iconCheck}
-                    onClick={() => setChecked(false)}
+                    onClick={() => {
+                        setChecked(false);
+                        props.onClick();
+                    }}
                     alt="checked"
                 />
             ) : (
                 <img
                     src={iconUncheck}
                     alt="unchecked"
-                    onClick={() => setChecked(true)}
+                    onClick={() => {
+                        setChecked(true);
+                        props.onClick();
+                    }}
                 />
             )}
-        </>
+        </div>
     );
 };
 
-export default function Filter() {
+export default function Filter(props) {
+    const [area, setArea] = useState([]);
+    const [price, setPrice] = useState({});
+    const [equipment, setEquipment] = useState([]);
+    const handleAreaChange = (input) => {
+        let newArea = [...area];
+        if (newArea.includes(input)) {
+            newArea = newArea.filter((item) => item !== input);
+        } else {
+            newArea.push(input);
+        }
+        setArea(newArea);
+    };
+    const handleEquipmentChange = (input) => {
+        let newEquipement = [...equipment];
+        if (newEquipement.includes(input)) {
+            newEquipement = newEquipement.filter((item) => item !== input);
+        } else {
+            newEquipement.push(input);
+        }
+        setEquipment(newEquipement);
+    };
+
     return (
         <Wrapper>
             <h2>Mức tiền</h2>
             <Price>
-                <input type="number" placeholder="Từ 100.000" />
-                <input type="number" placeholder="đến 600.000" />
+                <input
+                    type="number"
+                    placeholder="Từ 100.000"
+                    onChange={(e) => {
+                        let newPrice = { ...price };
+                        newPrice.min = e.target.value;
+                        setPrice(newPrice);
+                    }}
+                />
+                <input
+                    type="number"
+                    placeholder="đến 600.000"
+                    onChange={(e) => {
+                        let newPrice = { ...price };
+                        newPrice.max = e.target.value;
+                        setPrice(newPrice);
+                    }}
+                />
             </Price>
             <h2>Diện tích</h2>
             <Item>
-                <Checkbox />
+                <Checkbox onClick={() => handleAreaChange("0,63 м2")} />
                 <span>0,63 м2</span>
             </Item>
             <Item>
-                <Checkbox />
+                <Checkbox onClick={() => handleAreaChange("0,90 м2")} />
                 <span>0,90 м2</span>
             </Item>
             <Item>
-                <Checkbox />
+                <Checkbox onClick={() => handleAreaChange("1,13 м2")} />
                 <span>1,13 м2</span>
             </Item>
             <Item>
-                <Checkbox />
+                <Checkbox onClick={() => handleAreaChange("1,56 м2")} />
                 <span>1,56 м2</span>
             </Item>
             <Item>
-                <Checkbox />
+                <Checkbox onClick={() => handleAreaChange("2,56 м2")} />
                 <span>2,56 м2</span>
             </Item>
             <Item>
-                <Checkbox />
+                <Checkbox onClick={() => handleAreaChange("2,88 м2")} />
                 <span>2,88 м2</span>
             </Item>
             <h2>Thiết bị phòng</h2>
             <Item>
-                <Checkbox />
+                <Checkbox onClick={() => handleEquipmentChange("toy")} />
                 <span>Đồ chơi</span>
             </Item>
             <Item>
-                <Checkbox />
+                <Checkbox onClick={() => handleEquipmentChange("bed")} />
                 <span>Giường tắm nắng</span>
             </Item>
             <Item>
-                <Checkbox />
+                <Checkbox onClick={() => handleEquipmentChange("toys")} />
                 <span>Bài cào</span>
             </Item>
             <Item>
@@ -119,11 +164,30 @@ export default function Filter() {
                 <span>Trò chơi phức tạp</span>
             </Item>
             <Item>
-                <Checkbox />
+                <Checkbox onClick={() => handleEquipmentChange("house")} />
                 <span>Nhà nhỏ</span>
             </Item>
-            <Button variant="primary">Áp dụng</Button>
-            <Button>Đặt lại bộ lọc</Button>
+            <Button
+                variant="primary"
+                onClick={() => {
+                    props.handleFilter({
+                        price,
+                        equipment,
+                        area,
+                    });
+                }}
+            >
+                Áp dụng
+            </Button>
+            <Button
+                onClick={() => {
+                    setArea([]);
+                    setEquipment([]);
+                    setPrice({});
+                }}
+            >
+                Đặt lại bộ lọc
+            </Button>
         </Wrapper>
     );
 }
