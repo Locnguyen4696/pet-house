@@ -89,7 +89,9 @@ export default function Products() {
     const [sort, setSort] = useState(true); // true: asc, false: desc
     const [filter, setFilter] = useState(defaultFilter);
     const [data, setData] = useState(items);
-
+    const clearFilter = () => {
+        setFilter(defaultFilter);
+    };
     useEffect(() => {
         const sortByPrice = (a, b) => {
             if (sort) {
@@ -102,17 +104,28 @@ export default function Products() {
     }, [sort]);
     useEffect(() => {
         let filterItem = [];
+
         for (let item of items) {
-            let isShow = true;
-            if (item.price < filter.price.min || item.price > filter.price.max)
-                isShow = false;
-            for (let area of filter.area) {
-                if (item.area.indexOf(area) === -1) isShow = false;
+            let correctPrice = false;
+            let correctArea = false;
+            if (filter.price.min && filter.price.max) {
+                if (
+                    item.price >= filter.price.min &&
+                    item.price <= filter.price.max
+                )
+                    correctPrice = true;
+            } else {
+                correctPrice = true;
             }
-            // for (let equipment of filter.equipment) {
-            //     console.log(item.equipment, equipment);
-            // }
-            if (isShow) {
+            if (filter.area.length > 0) {
+                for (let area of filter.area) {
+                    if (item.area.includes(area)) correctArea = true;
+                }
+            } else {
+                correctArea = true;
+            }
+
+            if (correctArea && correctPrice) {
                 filterItem.push(item);
             }
         }
@@ -123,7 +136,11 @@ export default function Products() {
             <Heading handleSort={setSort} sort={sort} />
             <Flex>
                 <Container>
-                    <Filter handleFilter={setFilter} filter={filter} />
+                    <Filter
+                        handleFilter={setFilter}
+                        filter={filter}
+                        clearFilter={clearFilter}
+                    />
                     <Grid data={data} />
                 </Container>
             </Flex>

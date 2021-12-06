@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import iconCheck from "../../assets/icon-check.png";
 import iconUncheck from "../../assets/icon-uncheck.png";
@@ -49,14 +49,12 @@ const Button = styled.button`
 `;
 
 const Checkbox = (props) => {
-    const [checked, setChecked] = useState(false);
     return (
-        <div>
-            {checked ? (
+        <>
+            {props.checked ? (
                 <img
                     src={iconCheck}
                     onClick={() => {
-                        setChecked(false);
                         props.onClick();
                     }}
                     alt="checked"
@@ -66,18 +64,36 @@ const Checkbox = (props) => {
                     src={iconUncheck}
                     alt="unchecked"
                     onClick={() => {
-                        setChecked(true);
                         props.onClick();
                     }}
                 />
             )}
-        </div>
+        </>
     );
 };
 
 export default function Filter(props) {
     const [area, setArea] = useState([]);
-    const [price, setPrice] = useState({});
+    const [areaActive, setAreaActive] = useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+    ]);
+    const [equipmentActive, setEquipmentActive] = useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+    ]);
+
+    const [price, setPrice] = useState({
+        min: 100000,
+        max: 600000,
+    });
     const [equipment, setEquipment] = useState([]);
     const handleAreaChange = (input) => {
         let newArea = [...area];
@@ -87,6 +103,16 @@ export default function Filter(props) {
             newArea.push(input);
         }
         setArea(newArea);
+    };
+    const handleAreaActive = (input) => {
+        let newAreaActive = [...areaActive];
+        newAreaActive[input] = !newAreaActive[input];
+        setAreaActive(newAreaActive);
+    };
+    const handleEquipmentActive = (input) => {
+        let newEquipmentActive = [...equipmentActive];
+        newEquipmentActive[input] = !newEquipmentActive[input];
+        setEquipmentActive(newEquipmentActive);
     };
     const handleEquipmentChange = (input) => {
         let newEquipement = [...equipment];
@@ -105,6 +131,7 @@ export default function Filter(props) {
                 <input
                     type="number"
                     placeholder="Từ 100.000"
+                    value={price.min}
                     onChange={(e) => {
                         let newPrice = { ...price };
                         newPrice.min = e.target.value;
@@ -114,6 +141,7 @@ export default function Filter(props) {
                 <input
                     type="number"
                     placeholder="đến 600.000"
+                    value={price.max}
                     onChange={(e) => {
                         let newPrice = { ...price };
                         newPrice.max = e.target.value;
@@ -123,48 +151,114 @@ export default function Filter(props) {
             </Price>
             <h2>Diện tích</h2>
             <Item>
-                <Checkbox onClick={() => handleAreaChange("0,63 м2")} />
+                <Checkbox
+                    checked={areaActive[0]}
+                    onClick={() => {
+                        handleAreaChange("0,63 м2");
+                        handleAreaActive(0);
+                    }}
+                />
                 <span>0,63 м2</span>
             </Item>
             <Item>
-                <Checkbox onClick={() => handleAreaChange("0,90 м2")} />
+                <Checkbox
+                    checked={areaActive[1]}
+                    onClick={() => {
+                        handleAreaChange("0,90 м2");
+                        handleAreaActive(1);
+                    }}
+                />
                 <span>0,90 м2</span>
             </Item>
             <Item>
-                <Checkbox onClick={() => handleAreaChange("1,13 м2")} />
+                <Checkbox
+                    checked={areaActive[2]}
+                    onClick={() => {
+                        handleAreaChange("1,13 м2");
+                        handleAreaActive(2);
+                    }}
+                />
                 <span>1,13 м2</span>
             </Item>
             <Item>
-                <Checkbox onClick={() => handleAreaChange("1,56 м2")} />
+                <Checkbox
+                    checked={areaActive[3]}
+                    onClick={() => {
+                        handleAreaChange("1,56 м2");
+                        handleAreaActive(3);
+                    }}
+                />
                 <span>1,56 м2</span>
             </Item>
             <Item>
-                <Checkbox onClick={() => handleAreaChange("2,56 м2")} />
+                <Checkbox
+                    checked={areaActive[4]}
+                    onClick={() => {
+                        handleAreaChange("2,56 м2");
+                        handleAreaActive(4);
+                    }}
+                />
                 <span>2,56 м2</span>
             </Item>
             <Item>
-                <Checkbox onClick={() => handleAreaChange("2,88 м2")} />
+                <Checkbox
+                    checked={areaActive[5]}
+                    onClick={() => {
+                        handleAreaChange("2,88 м2");
+                        handleAreaActive(5);
+                    }}
+                />
                 <span>2,88 м2</span>
             </Item>
             <h2>Thiết bị phòng</h2>
             <Item>
-                <Checkbox onClick={() => handleEquipmentChange("toy")} />
+                <Checkbox
+                    checked={equipmentActive[0]}
+                    onClick={() => {
+                        handleEquipmentChange("toy");
+                        handleEquipmentActive(0);
+                    }}
+                />
                 <span>Đồ chơi</span>
             </Item>
             <Item>
-                <Checkbox onClick={() => handleEquipmentChange("bed")} />
+                <Checkbox
+                    checked={equipmentActive[1]}
+                    onClick={() => {
+                        handleEquipmentChange("bed");
+                        handleEquipmentActive(1);
+                    }}
+                />
                 <span>Giường tắm nắng</span>
             </Item>
             <Item>
-                <Checkbox onClick={() => handleEquipmentChange("toys")} />
+                <Checkbox
+                    checked={equipmentActive[2]}
+                    onClick={() => {
+                        handleEquipmentChange("toys");
+                        handleEquipmentActive(2);
+                    }}
+                />
                 <span>Bài cào</span>
             </Item>
             <Item>
-                <Checkbox />
+                <Checkbox
+                    checked={equipmentActive[3]}
+                    onClick={() => {
+                        handleEquipmentChange("house");
+                        handleEquipmentActive(3);
+                    }}
+                />
                 <span>Trò chơi phức tạp</span>
             </Item>
             <Item>
-                <Checkbox onClick={() => handleEquipmentChange("house")} />
+                <Checkbox
+                    checked={equipmentActive[4]}
+                    onClick={() => {
+                        handleEquipmentChange("house");
+                        handleEquipmentActive(4);
+                    }}
+                />
                 <span>Nhà nhỏ</span>
             </Item>
             <Button
@@ -183,7 +277,13 @@ export default function Filter(props) {
                 onClick={() => {
                     setArea([]);
                     setEquipment([]);
-                    setPrice({});
+                    setPrice({
+                        min: 100000,
+                        max: 600000,
+                    });
+                    setAreaActive([false, false, false, false, false, false]);
+                    setEquipmentActive([false, false, false, false, false]);
+                    props.clearFilter();
                 }}
             >
                 Đặt lại bộ lọc
